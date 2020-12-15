@@ -9,3 +9,62 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake Temp File
+build/
+
+# Binary File
+bin/
+
+# VSCode Setting
+.vscode/
+
+*.swp
+*.swo
+*.bak
+
+build/
+build*/
+release/
+cscope*
+tags*
+build_debug/
+build_release/
+.idea/
+build/
+cmake-build-debug/
+cmake-build-debug-remote-host/
+.vscode/
