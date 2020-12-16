@@ -1,0 +1,4 @@
+
+[submodule "3rdparty/only_for_test"]
+	path = 3rdparty/only_for_test
+	url = https://github.com/phoenixwxy/only_for_test

@@ -1,110 +1,33 @@
-# CMake项目模板
-
-### 目录结构
-
-```
-.
-├── 3rdparty                # 第三方库源码依赖和库依赖存放位置
-│   ├── CMakeLists.txt      # 第三方库源码依赖编译CMakeLists文件
-│   ├── spdlog              # 源码依赖示例项目spdlog(github可搜索)
-│   └── target              # 库依赖存放目录
-│       ├── linux_armv7-a   # 以平台和架构命名区分
-│       │   ├── include     # 头文件存放目录
-│       │   └── lib         # 库文件存放目录
-│       └── linux_x86-64
-│           ├── include
-│           └── lib
-├── cmake                   # 存放项目相关的cmakem模块文件
-│   ├── load_3rdparty.cmake
-│   ├── messagecolor.cmake
-│   ├── toolchain_options.cmake
-│   └── utils.cmake
-├── CMakeLists.txt          # 项目根目录CMakeLists文件，cmake入口文件
-├── conf                    # 项目配置文件存放目录
-├── doc                     # 项目文档存放目录
-├── platforms               # 项目平台性相关内容存放目录，包括交叉编译
-│   └── linux
-│       └── arm.himix200.cmake
-├── README.md               # 项目说明
-├── scripts                 # 相关脚本存放目录，包括持续集成和部署相关
-├── src                     # 项目源码目录
-│   ├── CMakeLists.txt
-│   ├── common
-│   ├── logger
-│   └── main
-└── tests                   # 测试示例源码存放目录
-    ├── CMakeLists.txt
-    └── test_logger.cpp
-```
 
 
+English | [简体中文](./README.cn.md)
 
-### 第三方库源码依赖
+# README
 
-如果你想依赖第三方项目源码，一起编译，则我们可以通过git submodule来管理第三方源码，实现源码依赖和它的版本管理。当然你可以不用git submodule，直接将源码手动放入3rdparty目录中。
+machine translation -_-!!!
 
-添加一个git submodule:
+## CMake project template
 
-```
-# url为git项目地址
-# path为项目存放目录，可以多级目录，目录名一般为项目名称
-# git add <url.git> <path>
-# 示例，执行后，会直接拉取项目源码到3rdparty/spdlog目录下，并创建.gitmodule在仓库根目录下
-$ git submodule add  https://github.com/gabime/spdlog.git 3rdparty/spdlog
-```
+Implemented a CMake project based on C++ language in Linux environment
 
-还可以做到带指定分支进行添加操作：
+## Environmental requirements
 
-```
-# 注意：命令需要在项目根目录下执行，第一次会直接拉取源码，不用update
-$ git submodule add -b v1.x   https://github.com/gabime/spdlog.git 3rdparty/spdlog
-$ git submodule update --remote
-```
+- CMake 3.1+ has been installed.
+- Compiler capable of supporting C++11 (4.8+)
 
-最后的.gitmodules文件为：
-
-```
-[submodule "3rdparty/spdlog"]
-    path = 3rdparty/spdlog                                                   
-    url = https://github.com/gabime/spdlog.git 
-    branch = v1.x
-```
-
-实现三方项目源码编译（首先你依赖的三方项目源码是支持CMake构建方式的），在3rdparty/CMakeLists.txt中编写：
-
-```
-CMAKE_MINIMUM_REQUIRED(VERSION 3.4)                                             
-PROJECT(HiApp3rdparty)
-
-ADD_SUBDIRECTORY(spdlog)
-```
-
-在根目录CMakeLists.txt中包含3rdparty中CMakeLists.txt，就可以编译第三方库了:
-
-```
-ADD_SUBDIRECTORY(3rdparty)
-```
-
-通过TARGET_LINK_LIBRARIES就可以指定第三方项目名称实现链接。
-
-
-
-# 环境要求
-
-- CMake 3.1+ 已安装。
-- 能够支持C++11的编译器(4.8+)
-
-# 编译和安装
+## Compile and install
 
 ```
 $ mkdir build
 $ cd build
 $ cmake ..
+# Because some versions use cache, otherwise some version information is not available. . Fix afterwards
+$ cmake ..
 $ make -j
 $ make install DESTDIR={your destination}
 ```
 
-# 交叉编译和安装
+## Cross compilation and installation
 
 ```
 $ mkdir build
@@ -114,3 +37,95 @@ $ cmake .. -DCMAKE_TOOLCHAIN_FILE=../platforms/linux/arm.himix200.cmake -DTOOLCH
 $ make -j
 $ make install DESTDIR={your destination}
 ```
+
+## TODO
+
+- Support the construction of 3rdParty
+
+- Support unit testing
+- Support thread pool
+- Support static code inspection
+
+### Directory Structure
+
+```
+.
+├── 3rdparty # Third-party library source code dependency and library dependency storage location
+│ ├── CMakeLists.txt # The source code of the third-party library depends on the compiled CMakeLists file
+│ ├── spdlog # The source code depends on the sample project spdlog (github searchable)
+│ └── target # Library dependency storage directory
+│ ├── linux_armv7-a # distinguished by platform and architecture
+│ │ ├── include # Header file storage directory
+│ │ └── lib # Library file storage directory
+│ └── linux_x86-64
+│ ├── include
+│ └── lib
+├── cmake # Store project-related cmakem module files
+│ ├── load_3rdparty.cmake
+│ ├── messagecolor.cmake
+│ ├── toolchain_options.cmake
+│ └── utils.cmake
+├── CMakeLists.txt # Project root directory CMakeLists file, cmake entry file
+├── conf # Project configuration file storage directory
+├── doc # Project document storage directory
+├── platforms # Project platform-related content storage directory, including cross-compilation
+│ └── linux
+│ └── arm.himix200.cmake
+├── README.md # Project description
+├── scripts # Storage directory for related scripts, including continuous integration and deployment related
+├── src # Project source directory
+│ ├── CMakeLists.txt
+│ ├── common
+│ ├── log
+│ └── main
+└── tests # Test sample source code storage directory
+    ├── CMakeLists.txt
+```
+
+### Third-party library source code dependency
+
+If you want to rely on the source code of a third-party project and compile it together, we can manage the third-party source code through git submodule to realize source code dependency and its version management. Of course, you can directly put the source code into the 3rdparty directory without using git submodule.
+
+Add a git submodule:
+
+```
+# url is the address of the git project
+# path is the project storage directory, which can be multi-level directories, the directory name is generally the project name
+# git add <url.git> <path>
+# Example, after execution, it will directly pull the project source code to the 3rdparty/spdlog directory, and create a .gitmodule in the warehouse root directory
+$ git submodule add https://github.com/gabime/spdlog.git 3rdparty/spdlog
+```
+
+You can also add a specified branch:
+
+```
+# Note: The command needs to be executed in the project root directory, the source code will be pulled directly for the first time, without update
+$ git submodule add -b v1.x https://github.com/gabime/spdlog.git 3rdparty/spdlog
+$ git submodule update --remote
+```
+
+The final .gitmodules file is:
+
+```
+[submodule "3rdparty/spdlog"]
+    path = 3rdparty/spdlog
+    url = https://github.com/gabime/spdlog.git
+    branch = v1.x
+```
+
+To compile the source code of the tripartite project (the source code of the tripartite project you depend on supports the CMake build method), write in 3rdparty/CMakeLists.txt:
+
+```
+CMAKE_MINIMUM_REQUIRED(VERSION 3.4)
+PROJECT(HiApp3rdparty)
+
+ADD_SUBDIRECTORY(spdlog)
+```
+
+If you include CMakeLists.txt in 3rdparty in the root directory CMakeLists.txt, you can compile third-party libraries:
+
+```
+ADD_SUBDIRECTORY(3rdparty)
+```
+
+Through TARGET_LINK_LIBRARIES, you can specify the name of the third-party project to achieve the link.
