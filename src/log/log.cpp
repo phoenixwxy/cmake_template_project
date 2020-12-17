@@ -3,14 +3,14 @@
 struct DebugLogInfo g_logInfo =
 {
     {
-        0x0,        // PLogDebug
-        0x3,        // PLogError
-        0x0,        // PLogWarn
-        0x0,        // PLogConfig
-        0x3,        // PLogInfo
-        0x0,        // PLogVerbose
-        0x0,        // PLogDump
-        0x0,        // PLogCoreCfg
+        0x0,            // PLogDebug
+        0xFFFF,         // PLogError
+        0x0,            // PLogWarn
+        0x0,            // PLogConfig
+        0xFFFF,         // PLogInfo
+        0x0,            // PLogVerbose
+        0x0,            // PLogDump
+        0xFFFF,         // PLogCoreCfg
     },
     nullptr,
     TRUE

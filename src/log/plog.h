@@ -31,8 +31,9 @@ static const PLog PLogCoreCfg = 7;  ///< Core Config messages
 static const PLog PLogMax     = 8;  ///< Max verbosity levels
 
 typedef UINT64 PLogGroup;
-static const PLogGroup PLogGroupCore = (static_cast<UINT64>(1) << 0);
-static const PLogGroup PLogGroupApp  = (static_cast<UINT64>(1) << 1);
+static const PLogGroup PLogGroupCore        = (static_cast<UINT64>(1) << 0);
+static const PLogGroup PLogGroupApp         = (static_cast<UINT64>(1) << 1);
+static const PLogGroup PLogGroupThread      = (static_cast<UINT64>(1) << 2);
 
 struct DebugLogInfo
 {
@@ -82,6 +83,7 @@ public:
         switch (group) {
         case PLogGroupCore:         pString = "[CORE    ]";     break;
         case PLogGroupApp:          pString = "[APP     ]";     break;
+        case PLogGroupThread:       pString = "[THREAD  ]";     break;
         default:                    pString = "[UNKNOWN ]";     break;
         }
         return pString;
