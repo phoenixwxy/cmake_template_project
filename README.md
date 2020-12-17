@@ -40,8 +40,6 @@ $ make install DESTDIR={your destination}
 
 ## TODO
 
-- Support the construction of 3rdParty
-
 - Support unit testing
 - Support thread pool
 - Support static code inspection

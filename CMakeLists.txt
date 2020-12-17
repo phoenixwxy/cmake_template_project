@@ -40,14 +40,14 @@ MESSAGE(INFO "--------------------------------")
 #--------------------------------------------
 MESSAGE(INFO "--------------------------------")
 MESSAGE(INFO "Set and Check Platform")
-IF(NOT YOUR_TARGET_OS)
-    SET(YOUR_TARGET_OS linux)
+IF(NOT TARGET_OS)
+    SET(TARGET_OS linux)
 ENDIF()
-IF(NOT YOUR_TARGET_ARCH)
-    SET(YOUR_TARGET_ARCH x86-64)
+IF(NOT TARGET_ARCH)
+    SET(TARGET_ARCH x86-64)
 ENDIF()
-MESSAGE(STATUS "Your target os : ${YOUR_TARGET_OS}")
-MESSAGE(STATUS "Your target arch : ${YOUR_TARGET_ARCH}")
+MESSAGE(STATUS "Your target os : ${TARGET_OS}")
+MESSAGE(STATUS "Your target arch : ${TARGET_ARCH}")
 MESSAGE(INFO "--------------------------------")
 
 MESSAGE(INFO "--------------------------------")
@@ -61,9 +61,9 @@ OPTION(BUILD_TESTS "Build with tests" ON)
 MESSAGE(STATUS "Build Tests: ${BUILD_TESTS}")
 MESSAGE(INFO "--------------------------------")
 
-#--------------------------------------------
+#--------------------------------------------#
 # Set default build to debug
-#--------------------------------------------
+#--------------------------------------------#
 MESSAGE(INFO "--------------------------------")
 IF(NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose Release or Debug" FORCE)
@@ -73,10 +73,26 @@ MESSAGE(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
 MESSAGE(INFO "If want Release, please use \"cmake -DCMAKE_BUILD_TYPE=Release ..\"")
 MESSAGE(INFO "--------------------------------")
 
+MESSAGE(INFO "--------------------------------")
+MESSAGE(INFO "Load 3rdparty")
+INCLUDE(cmake/3rdparty.cmake)
+LOAD_LIB3RDPARTY(TARGET_OS TARGET_ARCH)
+MESSAGE(INFO "--------------------------------")
+
+#--------------------------------------------#
+# build 3rdparty
+#--------------------------------------------#
+MESSAGE(INFO "--------------------------------")
+MESSAGE(STATUS "Build 3rdparty")
+ADD_SUBDIRECTORY(3rdparty)
+MESSAGE(INFO "--------------------------------")
+
+#--------------------------------------------#
 # Build application
-#--------------------------------------------
+#--------------------------------------------#
 MESSAGE(INFO "--------------------------------")
 MESSAGE(INFO "Build application")
+# project_extract_version()
 
 # Add you need submodule
 ADD_SUBDIRECTORY(src)

@@ -36,8 +36,6 @@ $ make install DESTDIR={your destination}
 
 ## TODO
 
-- 支持3rdParty的构建
-
 - 支持单元测试
 - 支持线程池
 - 支持静态代码检查
