@@ -24,7 +24,7 @@ MESSAGE(INFO "Set Project Version")
 
 SET(PROJECT_VERSION_MAJOR 0)
 SET(PROJECT_VERSION_MINOR 1)
-SET(PROJECT_VERSION_PATCH 0)
+SET(PROJECT_VERSION_PATCH 1)
 
 # cmake/utils.cmake
 project_extract_version()

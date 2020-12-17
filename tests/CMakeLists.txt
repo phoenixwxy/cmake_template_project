@@ -6,10 +6,14 @@ PROJECT(Tests)
 # AUX_SOURCE_DIRECTORY(${TESTS_DIR} SRC_TESTS)
 
 # If need
-INCLUDE_DIRECTORIES()
+INCLUDE_DIRECTORIES(.
+                    ${LOG_DIR}
+                    ${UTILS_DIR})
 
 # If need
-LINK_DIRECTORIES()
+LINK_DIRECTORIES(${LOG_DIR}
+                 ${OUT_STATIC_LIB_DIR}
+                 ${OUT_SHARE_LIB_DIR})
 
 FILE(GLOB APP_SOURCES *.cpp)
 FOREACH(testsourcefile ${APP_SOURCES})
@@ -17,7 +21,9 @@ FOREACH(testsourcefile ${APP_SOURCES})
     STRING(REPLACE ".cpp" "" testname ${testsourcefilewithoutpath})
     ADD_EXECUTABLE( ${testname} ${testsourcefile})
     SET(EXECUTABLE_OUTPUT_PATH ${OUT_TESTS_DIR})
-    # TARGET_LINK_LIBRARIES(${testname})
+    TARGET_LINK_LIBRARIES(${testname}
+                            module_utils
+                            module_log)
 
     INSTALL(TARGETS ${testname}
         ARCHIVE DESTINATION lib

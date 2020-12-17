@@ -16,6 +16,7 @@
 /// Please create PLog configuration file named "PLogSettings.txt"
 /// if you want to set Log level.
 /// PLogErrorMask=0x3 means all goup will be enable Error Mask
+/// NEED like tihs Plog* g_PlogObj = Plog::Create();
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef UINT32 PLog ;

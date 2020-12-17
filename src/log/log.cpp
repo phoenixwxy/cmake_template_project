@@ -18,7 +18,7 @@ struct DebugLogInfo g_logInfo =
 
 namespace Log {
 
-Plog* g_PlogObj = Plog::Create();
+// Plog* g_PlogObj = Plog::Create();
 
 Plog* Plog::Create()
 {
