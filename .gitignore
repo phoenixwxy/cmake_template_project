@@ -68,3 +68,4 @@ build/
 cmake-build-debug/
 cmake-build-debug-remote-host/
 .vscode/
+out/

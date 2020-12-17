@@ -3,13 +3,13 @@
 #include "types.h"
 #include "plog.h"
 
-#include "thread_manager.h"
+// #include "thread_manager.h"
 
 int main(int argc, char** argv)
 {
     Log::Plog* g_PlogObj = Log::Plog::Create();
     PResult result = PResultSuccess;
-    ThreadManager threadManager;
+    // ThreadManager threadManager;
 
     std::cout << "Success!!! result:" << result << std::endl;
 
